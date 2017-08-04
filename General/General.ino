@@ -47,10 +47,9 @@ void setup() {
   //time.settime(0,51,21,27,10,15,2);  // 0  сек, 51 мин, 21 час, 27, октября, 2015 года, вторник  //для установки времени расскоментировать
 }
 void loop() {
-  //hours_rtc = time.gettime("H");
-  hours_rtc = 18;
-  sensors.requestTemperatures();
-  temp_bochka = sensors.getTempC(Thermometer4);
+  hours_rtc = time.gettime("H");  // получение времени и запись в переменную
+  sensors.requestTemperatures();  // переопрос датчиков
+  temp_bochka = sensors.getTempC(Thermometer4);   //получение температуры с датчиков и запись в переменные
   temp_dom = sensors.getTempC(Thermometer1);
   temp_okrug = sensors.getTempC(Thermometer5);
   temp_kotelna = sensors.getTempC(Thermometer2);
@@ -76,28 +75,28 @@ void loop() {
   */
   if (hours_rtc >= 23 || hours_rtc <= 7) { //Собственно все условия для управления релюхой
     digitalWrite(relekotel, HIGH);
-    Serial.println("off_time");
+    //Serial.println("off_time");
   }else if (temp_okrug < 30){
       digitalWrite(relekotel, LOW);
-    Serial.println("on_okrug");
+    //Serial.println("on_okrug");
     }else if (temp_kotelna < 30){
        digitalWrite(relekotel, LOW);
-    Serial.println("on_koteln");
+    //Serial.println("on_koteln");
     }else if (temp_dom < 30){
        digitalWrite(relekotel, LOW);
-    Serial.println("on_dom");
+    //Serial.println("on_dom");
     }else{
       digitalWrite(relekotel, HIGH);
-    Serial.println("off");
+    //Serial.println("off");
     };
-    Serial.println("whatssup");
+    //Serial.println("whatssup");
 }
 
-void rele_on(){                 //Для удобства переключения переведены в отдельные войды и вызываются по названию войда
+void rele_on(){                 //Для удобства переключения переведены в отдельные войды и вызываются по названию войда(не работает)
     digitalWrite(relekotel, LOW);
-    Serial.println("on");
+    //Serial.println("on");
   }
   void rele_off(){
     digitalWrite(relekotel, HIGH);
-    Serial.println("off");
+    //Serial.println("off");
   }
